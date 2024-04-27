@@ -1,0 +1,19 @@
+Source: qr-filter-qml-plugin
+Section: libs
+Maintainer: Bardia Moshiri <fakeshell@bardia.tech>
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               qt5-qmake,
+               qtbase5-dev,
+               qtdeclarative5-dev,
+               qtmultimedia5-dev,
+               pkgconf
+Standards-Version: 4.5.1
+
+Package: qr-filter-qml-plugin
+Architecture: any
+Multi-Arch: foreign
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Description: QML zxing wrapper with filter for QR-code reading from video stream
