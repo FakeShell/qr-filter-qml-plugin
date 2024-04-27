@@ -81,6 +81,13 @@ QString Service::decodeFromDescriptor(QDBusUnixFileDescriptor fd,
                                   uint size, int width, int height, int pixelFormat)
 {
     m_autoclose.stop();
+
+    qDebug() << "Decoding from descriptor: FD =" << fd.fileDescriptor()
+             << ", Size =" << size
+             << ", Width =" << width
+             << ", Height =" << height
+             << ", PixelFormat =" << pixelFormat;
+
     QString response;
     QFile mf;
     if (mf.open(fd.fileDescriptor(), QIODevice::ReadOnly)) {
@@ -96,6 +103,7 @@ QString Service::decodeFromDescriptor(QDBusUnixFileDescriptor fd,
                 ZXing::Result result = ZXing::ReadBarcode(
                 { buf, width, height, format}, hints);
                 response = QString::fromStdString(result.text());
+                qDebug() << "Decoded QR Code text:" << response;
             } else {
                 qWarning() << "Input frame format is not supported by ZXing: "
                            << pixelFormat;
